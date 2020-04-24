@@ -20,10 +20,15 @@ class TransactionsRepository {
   }
 
   public all(): Transaction[] {
+    this.getBalance();
     return this.transactions;
   }
 
-  public getBalance(): Balance {}
+  public getBalance(): Balance {
+    console.log(
+      this.transactions.filter(transaction => transaction.type === 'income'),
+    );
+  }
 
   public create({ type, value, title }: RequestDTO): Transaction {
     const transaction = new Transaction({ type, value, title });
